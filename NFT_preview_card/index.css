@@ -1,83 +1,77 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
-
 /* CSS Reset */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
-}
-
-* {
+ }
+ 
+ * {
   margin: 0;
-}
-
-img {
+ }
+ 
+ img {
   display: block;
   max-width: 100%;
-}
-
-a {
+ }
+ 
+ a {
   text-decoration: none;
   color: inherit;
-}
-
-:root {
+ }
+ 
+ :root {
   --bg-body: hsl(217, 54%, 11%);
   --bg-card: hsl(216, 50%, 18%);
   --bg-green: hsl(178, 100%, 50%);
   --bg-white: hsl(0, 0%, 100%);
   --bg-blue-line: hsl(215, 32%, 27%);
-
+ 
   --ff-body: 'Outfit', sans-serif;
   --ff-headers: 'Outfit', sans-serif;
   --fc-white: hsl(0, 0%, 100%);
   --fc-green: hsl(178, 100%, 50%);
   --fc-soft-blue: hsl(215, 51%, 70%);
-}
-
-/* reusable classes */
-.flex-container {
+ }
+ 
+ /* reusable classes */
+ .flex-container {
   display: flex;
   align-items: center;
-}
-
-/* card */
-body {
+ }
+ 
+ /* card */
+ body {
   min-height: 100vh;
   display: grid;
   place-content: center;
   background-color: var(--bg-body);
   color: var(--fc-soft-blue);
-
   font-family: var(--ff-body);
   font-size: 1.125rem;
   line-height: 1.4;
   font-weight: 300;
-}
-
-.card-wrapper {
+ }
+ 
+ .card-wrapper {
   max-width: 21rem;
   overflow: hidden;
   border-radius: 1rem;
   background-color: var(--bg-card);
   padding: 1.5rem;
-
   display: grid;
   gap: 1.1rem;
-}
-
-.card-img {
+ }
+ 
+ .card-img {
   height: 17rem;
   width: 100%;
   object-fit: cover;
   border-radius: 0.5rem;
-}
-
-.img-wrapper {
+ }
+ 
+ .img-wrapper {
   position: relative;
-}
-
-.img-wrapper::after {
+ }
+ 
+ .img-wrapper::after {
   font-family: 'FontAwesome';
   content: '\f06e';
   font-size: 4rem;
@@ -90,71 +84,119 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-
   transition: all 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.img-wrapper:hover::after {
+ }
+ 
+ .img-wrapper:hover::after {
   opacity: 0.7;
-}
-
-.card-title {
+ }
+ 
+ .card-title {
   font-family: var(--ff-headers);
   font-size: 1.125rem;
   color: var(--fc-white);
   font-weight: 600;
   transition: all 0.3s;
-}
-
-.author {
+  position: relative;
+  display: inline-block;
+  text-decoration: none; /* Remove existing underline */
+ }
+ 
+ .card-title::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--fc-green);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+ }
+ 
+ .card-title:hover::after {
+  transform-origin: bottom left;
+  transform: scaleX(1);
+ }
+ 
+ .author {
   font-size: 1rem;
   font-weight: 400;
-}
-
-.author-name {
+ }
+ 
+ .author-name {
   transition: all 0.3s;
   color: var(--fc-white);
-}
-
-.card-title:hover,
-.author-name:hover {
+ }
+ 
+ .card-title:hover, .author-name:hover {
   color: var(--fc-green);
-}
-
-.card-price {
+ }
+ 
+ .card-price {
   justify-content: space-between;
-}
-
-.card-price .price {
+ }
+ 
+ .card-price .price {
   font-size: 1rem;
   color: var(--fc-green);
   font-weight: 400;
   gap: 0.5rem;
-}
-
-.card-price .time {
+ }
+ 
+ .card-price .time {
   gap: 0.5rem;
   font-size: 1rem;
-}
-
-hr {
+ }
+ 
+ hr {
   border: none;
   height: 2px;
   background-color: var(--bg-blue-line);
-}
-
-.author {
+ }
+ 
+ .author {
   gap: 1rem;
-}
-
-.author-img {
+ }
+ 
+ .author-img {
   width: 1.7rem;
   border-radius: 50%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border: 1px solid var(--bg-white);
-}
-
+ }
+ 
+ /* Responsive Typography */
+ h1, h2, p {
+     font-size: 1.2rem;
+ }
+ 
+ /* Media Queries for Smaller Screens */
+ @media (max-width: 768px) {
+     .card-wrapper {
+         max-width: 90%;
+         padding: 1rem;
+     }
+     .card-img {
+         height: 15rem;
+     }
+     .card-title, .card-description {
+         font-size: 1rem;
+     }
+ }
+ 
+ /* Enhanced Hover Effects */
+ .card-title:hover, .author-name:hover {
+     color: var(--fc-green);
+ }
+ 
+ /* Accessibility Improvements */
+ a:focus {
+     outline: 2px solid var(--fc-green);
+ }
+ 
