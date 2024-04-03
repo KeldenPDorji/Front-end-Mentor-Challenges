@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Simple Calculator</title>
+    <style type="text/css">
+        body {
+            margin: 30px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <label for="val1">Val 1:</label>
+        <input type="text" id="val1" /><br>
+        <label for="val2">Val 2:</label>
+        <input type="text" id="val2" /><br>
+        <input type="button" onClick="calculate('+')" value="Add" />
+        <input type="button" onClick="calculate('-')" value="Subtract" />
+        <input type="button" onClick="calculate('*')" value="Multiply" />
+        <input type="button" onClick="calculate('/')" value="Divide" />
+    </form>
+    <p>The Result is: <br>
+        <span id="result"></span>
+    </p>
+
+    <script>
+        function calculate(operation) {
+            var num1 = parseFloat(document.getElementById("val1").value);
+            var num2 = parseFloat(document.getElementById("val2").value);
+            var result;
+
+            switch (operation) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    if (num2 !== 0) {
+                        result = num1 / num2;
+                    } else {
+                        alert("Division by zero is not allowed.");
+                        return;
+                    }
+                    break;
+                default:
+                    result = "Invalid operation";
+            }
+
+            document.getElementById("result").innerHTML = result;
+        }
+    </script>
+
+</body>
+</html>
