@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Simple To-Do List</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+}
+.container {
+    width: 300px;
+    margin: 0 auto;
+}
+.item {
+    margin: 10px 0;
+    padding: 10px;
+    border: none; /* Removed border */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.item input {
+    margin-right: 10px;
+    border: none; /* Removed border */
+    background: none; /* Removed background */
+    outline: none; /* Removed outline */
+    color: black; /* Set text color */
+    width: 350px; /* Set width */
+    font-size: 1.4rem; /* Set font size */
+}
+.delete-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: red; /* Set delete button color */
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="Enter a task">
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+</div>
+
+<script>
+function addTask() {
+    const taskInput = document.getElementById('taskInput');
+    const taskList = document.getElementById('taskList');
+    const task = taskInput.value.trim();
+
+    if (task === '') {
+        alert('Please enter a task');
+        return;
+    }
+
+    const listItem = document.createElement('li');
+    listItem.classList.add('item');
+    listItem.textContent = task;
+
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('delete-button');
+    deleteButton.innerHTML = '&#10006;'; // Unicode for star
+    deleteButton.onclick = function() {
+        taskList.removeChild(listItem);
+    };
+
+    listItem.appendChild(deleteButton);
+    taskList.appendChild(listItem);
+    taskInput.value = '';
+}
+</script>
+
+</body>
+</html>
